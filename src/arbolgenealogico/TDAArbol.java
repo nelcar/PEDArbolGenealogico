@@ -3,10 +3,10 @@ package arbolgenealogico;
 import java.io.File;
 import java.util.ArrayList;
 
-public class Arbol {
+public class TDAArbol {
     private Nodo raiz;
  
-     public Arbol() {
+     public TDAArbol() {
         raiz = null;
     }
     public Nodo buscarRecursivo(String data) {
@@ -49,7 +49,7 @@ public class Arbol {
     static int contadorNodos = 0;
     static int contadorNulos = 0;
     static ArrayList<String> nodosVisitados = new ArrayList<>();
-    private void encontrarNodos(Nodo nodo, Arbol arbol) {
+    private void encontrarNodos(Nodo nodo, TDAArbol arbol) {
         if (nodo != null) {
             String nulo = "null";
             nodosVisitados.add(nodo.valor);
@@ -65,7 +65,7 @@ public class Arbol {
     }
     
     static int nuevoContadorNulos = 0;
-    public void asignarPadreHijo(Nodo nodo, Arbol arbol) {
+    public void asignarPadreHijo(Nodo nodo, TDAArbol arbol) {
         if (nodo != null) {
             for (Nodo tmp : nodo.hijos) {
                 if (tmp != null) {
@@ -80,7 +80,7 @@ public class Arbol {
            
         }
     }
-    public void graficarArbol(Arbol arbol) {
+    public void graficarArbol(TDAArbol arbol) {
         System.out.println("Entre sin problemas Al imprimir");
         encontrarNodos(raiz, arbol);
         asignarPadreHijo(raiz, arbol);
