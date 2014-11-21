@@ -1,11 +1,16 @@
 package arbolgenealogico;
 
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.PrintWriter;
 import java.util.ArrayList;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 public class main extends javax.swing.JFrame {
@@ -15,6 +20,9 @@ public class main extends javax.swing.JFrame {
         panelAbrirNuevo.setVisible(false);
         panelNew.setVisible(false);
         mainOpen.setVisible(false);
+        panelTree.setVisible(false);
+        panelAddSon.setVisible(false);
+        panelDetails.setVisible(false);
         this.setLocationRelativeTo(this);
     }
 
@@ -28,6 +36,21 @@ public class main extends javax.swing.JFrame {
         signInDialogPassword = new javax.swing.JTextField();
         CreateAcount = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
+        createPersonDialog = new javax.swing.JDialog();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        personName = new javax.swing.JTextField();
+        personSecondName = new javax.swing.JTextField();
+        personLastName = new javax.swing.JTextField();
+        personYear = new javax.swing.JTextField();
+        personDate = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        personDetails = new javax.swing.JTextArea();
+        createPerson = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel4 = new javax.swing.JLabel();
@@ -46,18 +69,19 @@ public class main extends javax.swing.JFrame {
         AddFather = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jPanel3 = new javax.swing.JPanel();
+        panelTree = new javax.swing.JPanel();
+        treeLabel = new javax.swing.JLabel();
         jSeparator3 = new javax.swing.JSeparator();
         mainOpen = new javax.swing.JPanel();
         jComboBox1 = new javax.swing.JComboBox();
         jButton4 = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
+        panelAddSon = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jButton6 = new javax.swing.JButton();
         jComboBox2 = new javax.swing.JComboBox();
         jComboBox3 = new javax.swing.JComboBox();
-        jPanel2 = new javax.swing.JPanel();
+        panelDetails = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -117,6 +141,115 @@ public class main extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(CreateAcount)
                 .addContainerGap(14, Short.MAX_VALUE))
+        );
+
+        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel13.setForeground(java.awt.Color.blue);
+        jLabel13.setText("Nombre:");
+
+        jLabel14.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel14.setForeground(java.awt.Color.blue);
+        jLabel14.setText("Apellidos:");
+
+        jLabel15.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel15.setForeground(java.awt.Color.blue);
+        jLabel15.setText("Segundo Nombre:");
+
+        jLabel16.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel16.setForeground(java.awt.Color.blue);
+        jLabel16.setText("Año de Nacimiento:");
+
+        jLabel17.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel17.setForeground(java.awt.Color.blue);
+        jLabel17.setText("Fecha de Nacimiento:");
+
+        jLabel18.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel18.setForeground(java.awt.Color.blue);
+        jLabel18.setText("Detalle:");
+
+        personName.setText("sin nombre");
+
+        personSecondName.setText("sin segundo nombre");
+
+        personLastName.setText("sin apellidos");
+
+        personYear.setText("sin año de nacimiento");
+
+        personDate.setText("sin fecha de nacimiento");
+
+        personDetails.setColumns(20);
+        personDetails.setRows(5);
+        jScrollPane1.setViewportView(personDetails);
+
+        createPerson.setBackground(java.awt.Color.red);
+        createPerson.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        createPerson.setForeground(java.awt.Color.white);
+        createPerson.setText("Crear");
+        createPerson.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                createPersonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout createPersonDialogLayout = new javax.swing.GroupLayout(createPersonDialog.getContentPane());
+        createPersonDialog.getContentPane().setLayout(createPersonDialogLayout);
+        createPersonDialogLayout.setHorizontalGroup(
+            createPersonDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(createPersonDialogLayout.createSequentialGroup()
+                .addGroup(createPersonDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(createPersonDialogLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(createPersonDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel13)
+                            .addComponent(jLabel15)
+                            .addComponent(jLabel14)
+                            .addComponent(jLabel16)
+                            .addComponent(jLabel17)
+                            .addComponent(jLabel18)))
+                    .addGroup(createPersonDialogLayout.createSequentialGroup()
+                        .addGap(74, 74, 74)
+                        .addComponent(createPerson)))
+                .addGap(50, 50, 50)
+                .addGroup(createPersonDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(personDate, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
+                    .addComponent(personYear, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
+                    .addComponent(personLastName, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
+                    .addComponent(personSecondName, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
+                    .addComponent(personName)
+                    .addComponent(jScrollPane1))
+                .addContainerGap(62, Short.MAX_VALUE))
+        );
+        createPersonDialogLayout.setVerticalGroup(
+            createPersonDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(createPersonDialogLayout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(createPersonDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel13)
+                    .addComponent(personName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(createPersonDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel15)
+                    .addComponent(personSecondName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(createPersonDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel14)
+                    .addComponent(personLastName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(createPersonDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel16)
+                    .addComponent(personYear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(createPersonDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel17)
+                    .addComponent(personDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(createPersonDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(createPersonDialogLayout.createSequentialGroup()
+                        .addComponent(jLabel18)
+                        .addGap(18, 18, 18)
+                        .addComponent(createPerson))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -231,15 +364,15 @@ public class main extends javax.swing.JFrame {
                 .addContainerGap(87, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 449, Short.MAX_VALUE)
+        javax.swing.GroupLayout panelTreeLayout = new javax.swing.GroupLayout(panelTree);
+        panelTree.setLayout(panelTreeLayout);
+        panelTreeLayout.setHorizontalGroup(
+            panelTreeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(treeLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 473, Short.MAX_VALUE)
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+        panelTreeLayout.setVerticalGroup(
+            panelTreeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(treeLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         jSeparator3.setOrientation(javax.swing.SwingConstants.VERTICAL);
@@ -279,36 +412,36 @@ public class main extends javax.swing.JFrame {
 
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout panelAddSonLayout = new javax.swing.GroupLayout(panelAddSon);
+        panelAddSon.setLayout(panelAddSonLayout);
+        panelAddSonLayout.setHorizontalGroup(
+            panelAddSonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelAddSonLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(panelAddSonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelAddSonLayout.createSequentialGroup()
                         .addComponent(jLabel8)
                         .addGap(18, 18, 18)
                         .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(panelAddSonLayout.createSequentialGroup()
                         .addComponent(jLabel10)
                         .addGap(18, 18, 18)
                         .addComponent(jComboBox3, 0, 112, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelAddSonLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton6)
                 .addGap(31, 31, 31))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        panelAddSonLayout.setVerticalGroup(
+            panelAddSonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelAddSonLayout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(panelAddSonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(panelAddSonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
                     .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(35, 35, 35)
@@ -318,18 +451,18 @@ public class main extends javax.swing.JFrame {
 
         jLabel11.setText("Detalles:");
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        javax.swing.GroupLayout panelDetailsLayout = new javax.swing.GroupLayout(panelDetails);
+        panelDetails.setLayout(panelDetailsLayout);
+        panelDetailsLayout.setHorizontalGroup(
+            panelDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelDetailsLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel11)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        panelDetailsLayout.setVerticalGroup(
+            panelDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelDetailsLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel11)
                 .addContainerGap(227, Short.MAX_VALUE))
@@ -390,13 +523,13 @@ public class main extends javax.swing.JFrame {
                 .addGap(17, 17, 17)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(panelTree, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(panelAddSon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(panelDetails, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -424,7 +557,7 @@ public class main extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jSeparator3)
                     .addComponent(jSeparator1)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panelTree, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -432,9 +565,9 @@ public class main extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(mainOpen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(panelAddSon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(panelDetails, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -444,12 +577,11 @@ public class main extends javax.swing.JFrame {
 
     private void AddFatherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddFatherActionPerformed
         node = new Nodo("");
-        tree.insertarNodo("Nelson", "0");
-        tree.insertarNodo("Nelson jr", "Nelson");
-        tree.insertarNodo("Keiry", "Nelson");
-        tree.insertarNodo("Xochilt","Nelson");
-        //tree.insertarNodo("ruben", "Familia");
-        tree.graficarArbol(tree);
+        createPersonDialog.pack();
+        createPersonDialog.setModal(true);
+        createPersonDialog.setLocationRelativeTo(this);
+        createPersonDialog.setVisible(true);
+
     }//GEN-LAST:event_AddFatherActionPerformed
 
     private void signInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signInActionPerformed
@@ -521,7 +653,7 @@ public class main extends javax.swing.JFrame {
             Usuario temp;
             int cont = 0;
             try {
-                
+
                 while ((temp = (Usuario) objeto.readObject()) != null) {
                     if (temp.getNombre().equals(mainUser.getText()) && temp.getContraseña().equals(mainPassword.getText())) {
                         panelAbrirNuevo.setVisible(true);
@@ -531,7 +663,7 @@ public class main extends javax.swing.JFrame {
                     }
                 }
                 System.out.println("sale");
-                
+
             } catch (Exception e) {
                 //JOptionPane.showMessageDialog(this, "El usuario o la contraceña son incorrectas");
                 if (cont == 0) {
@@ -553,6 +685,67 @@ public class main extends javax.swing.JFrame {
     private void mainNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainNewActionPerformed
         panelNew.setVisible(true);
     }//GEN-LAST:event_mainNewActionPerformed
+
+    private void createPersonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createPersonActionPerformed
+        // TODO add your handling code here:
+        panelTree.setVisible(true);
+        Persona r = new Persona();
+        r.setApellidos(personLastName.getText());
+        r.setAñoNacimiento(personYear.getText());
+        r.setDescripcion(personDetails.getText());
+        r.setFechaCumpleaños(personDate.getText());
+        r.setNombre(personName.getText());
+        r.setSegundoNombre(personSecondName.getText());
+        
+        person = r;
+        String pname = person.toString().replaceAll(" ", "_");
+        tree.insertarNodo(pname, "0");
+        tree.graficarArbol(tree);
+        
+        
+        FileWriter fichero = null;
+        PrintWriter pw = null;
+        try{
+            fichero = new FileWriter(".\\tree.ncr");
+            pw = new PrintWriter(fichero);
+            pw.println("digraph n{ " + tree.toString() +" }");
+        }catch(Exception e){
+            
+        }finally{
+            try{
+                if(null != fichero){
+                    fichero.close();
+                }
+            }catch(Exception e){
+                
+            }
+        }
+        
+        try {
+            String dotPath = ".\\bin\\dot.exe";
+            String fileInputPath = ".\\tree.ncr";
+            String fileOutputPath = ".\\arbolGrafic.jpg";
+            String n = dotPath + " -Tjpg " + fileInputPath + " -o " + fileOutputPath;
+            Runtime runtime = Runtime.getRuntime();
+            runtime.exec(n);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error al graficar Arbol");
+        }
+        
+        File img = new File(".\\arbolGrafic.jpg");
+        BufferedImage bufferedImage;
+        try{
+            bufferedImage = ImageIO.read(img);
+            ImageIcon image = new ImageIcon(bufferedImage);
+            treeLabel.repaint();
+            treeLabel.setIcon(image);
+        }catch(Exception e){
+            
+        }
+        
+        
+        
+    }//GEN-LAST:event_createPersonActionPerformed
 
     public static void main(String args[]) {
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -587,6 +780,8 @@ public class main extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddFather;
     private javax.swing.JButton CreateAcount;
+    private javax.swing.JButton createPerson;
+    private javax.swing.JDialog createPersonDialog;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -599,6 +794,12 @@ public class main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -610,9 +811,7 @@ public class main extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
@@ -621,15 +820,25 @@ public class main extends javax.swing.JFrame {
     private javax.swing.JPasswordField mainPassword;
     private javax.swing.JTextField mainUser;
     private javax.swing.JPanel panelAbrirNuevo;
+    private javax.swing.JPanel panelAddSon;
+    private javax.swing.JPanel panelDetails;
     private javax.swing.JPanel panelNew;
+    private javax.swing.JPanel panelTree;
+    private javax.swing.JTextField personDate;
+    private javax.swing.JTextArea personDetails;
+    private javax.swing.JTextField personLastName;
+    private javax.swing.JTextField personName;
+    private javax.swing.JTextField personSecondName;
+    private javax.swing.JTextField personYear;
     private javax.swing.JMenuItem signIn;
     private javax.swing.JDialog signInDialog;
     private javax.swing.JTextField signInDialogName;
     private javax.swing.JTextField signInDialogPassword;
+    private javax.swing.JLabel treeLabel;
     // End of variables declaration//GEN-END:variables
    private TDAArbol tree = new TDAArbol();
     private Nodo node;
     private ArrayList<Usuario> users = new ArrayList();
     private ArrayList<TDAArbol> trees = new ArrayList();
-
+    Persona person;
 }
