@@ -1,13 +1,14 @@
 
 package arbolgenealogico;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author Jossy
  */
-public class Nodo {
+public class Nodo implements Serializable{
     String valor;    
     ArrayList<Nodo> hijos;
 

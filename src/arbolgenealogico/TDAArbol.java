@@ -1,15 +1,35 @@
 package arbolgenealogico;
 
 import java.io.File;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class TDAArbol {
+public class TDAArbol implements Serializable{
 
     private Nodo raiz;
+    private String cadena = "";
+    private String nombre;
 
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+    
     public TDAArbol() {
         raiz = null;
     }
+
+    public String getCadena() {
+        return cadena;
+    }
+
+    public void setCadena(String cadena) {
+        this.cadena = cadena;
+    }
+    
 
     public Nodo buscarRecursivo(String data) {
         return (buscarRecursivo(raiz, data));
@@ -82,7 +102,6 @@ public class TDAArbol {
                     System.out.printf("%10s", "->");
                     System.out.printf("%15s%n", nodosVisitados.get(buscarNodo(tmp.valor)));
                     cadena += " -> " + nodosVisitados.get(buscarNodo(tmp.valor)) + " ";
-                    System.out.println("sodo" + cadena);
                 } else {
                 }
                 asignarPadreHijo(tmp, arbol);
@@ -91,16 +110,13 @@ public class TDAArbol {
         }
     }
 
-    public void graficarArbol(TDAArbol arbol) {
+    public String graficarArbol(TDAArbol arbol) {
         System.out.println("Entre sin problemas Al imprimir");
         encontrarNodos(raiz, arbol);
         asignarPadreHijo(raiz, arbol);
-    }
-
-    @Override
-    public String toString() {
         return cadena;
     }
-    String cadena = "";
+
+    
 
 }
